@@ -17,8 +17,6 @@ services:
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
       DEBUG: 1
-      DHPARAM_SIZE: 2048
-      RSA_KEY_SIZE: 2048
       RENEWAL_INTERVAL: "8d"
     ports:
       - "80:80/tcp"
