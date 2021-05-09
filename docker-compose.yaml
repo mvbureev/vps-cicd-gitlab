@@ -13,25 +13,26 @@ services:
       - next-start
   proxy:
     image: jonasal/nginx-certbot:latest
-    restart: always
+    restart: unless-stopped
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
       DEBUG: 1
+      DHPARAM_SIZE: 2048
+      RSA_KEY_SIZE: 2048
+      RENEWAL_INTERVAL: "8d"
     ports:
-      - 80:80/tcp
-      - 443:443/tcp
+      - "80:80/tcp"
+      - "443:443/tcp"
     networks:
       - next-start
     volumes:
-      - ./user_conf.d:/etc/nginx/user_conf.d:ro
+      - ./nginx/user_conf.d:/etc/nginx/user_conf.d:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      # - ./nginx/conf.d:/etc/nginx/user.conf.d:ro
-      - ./certbot/extra_domains:/etc/nginx/certbot/extra_domains:ro
-      - letsencrypt:/etc/letsencrypt
+      - nginx_secrets:/etc/letsencrypt
 
 networks:
   next-start:
     driver: bridge
 
 volumes:
-  letsencrypt:
+  nginx_secrets:
