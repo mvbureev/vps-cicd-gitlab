@@ -13,8 +13,8 @@ deploy:
     - apk update && apk add docker-compose
     - ls -la
     - docker image prune -f
-    - docker-compose -f docker-compose.yml build --no-cache
-    - docker-compose -f docker-compose.yml up -d
+    - docker-compose -f docker-compose.yaml build --no-cache
+    - docker-compose -f docker-compose.yaml up -d
     # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "ls -l"
     # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f next-starter/docker-compose.yaml down -v"
     # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f next-starter/docker-compose.yaml up -d --build"
