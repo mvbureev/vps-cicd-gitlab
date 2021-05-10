@@ -11,6 +11,7 @@ deploy:
     # - chmod og= $ID_RSA
     # - apk update && apk add openssh-client docker-compose
     - apk update && apk add docker-compose
+    - ls -la
     - docker image prune -f
     - docker-compose -f docker-compose.yml build --no-cache
     - docker-compose -f docker-compose.yml up -d
