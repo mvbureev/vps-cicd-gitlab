@@ -11,9 +11,9 @@ deploy:
     # - chmod og= $ID_RSA
     # - apk update && apk add openssh-client docker-compose
     - apk update && apk add docker-compose
-    - sudo docker image prune -f
-    - sudo docker-compose -f docker-compose.yml build --no-cache
-    - sudo docker-compose -f docker-compose.yml up -d
+    - docker image prune -f
+    - docker-compose -f docker-compose.yml build --no-cache
+    - docker-compose -f docker-compose.yml up -d
     # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "ls -l"
     # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f next-starter/docker-compose.yaml down -v"
     # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f next-starter/docker-compose.yaml up -d --build"
