@@ -18,11 +18,14 @@ services:
       - "3000:3000/udp"
     networks:
       - next-start
+
   proxy:
-    image: staticfloat/nginx-certbot
+    image: jonasal/nginx-certbot
     restart: unless-stopped
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
+      STAGING: "1"
+      DEBUG: "1"
       RENEWAL_INTERVAL: "8d"
     ports:
       - "80:80/tcp"
@@ -30,6 +33,7 @@ services:
     networks:
       - next-start
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/user.conf.d:ro
+      - ./nginx/user_conf.d:/etc/nginx/user_conf.d:ro
       - letsencrypt:/etc/letsencrypt
