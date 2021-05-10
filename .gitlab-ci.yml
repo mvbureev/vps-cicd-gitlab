@@ -9,7 +9,8 @@ deploy:
   stage: deploy
   script:
     # - chmod og= $ID_RSA
-    - apk update && apk add openssh-client docker-compose
+    # - apk update && apk add openssh-client docker-compose
+    - apk update && apk add docker-compose
     - sudo docker image prune -f
     - sudo docker-compose -f docker-compose.yml build --no-cache
     - sudo docker-compose -f docker-compose.yml up -d
