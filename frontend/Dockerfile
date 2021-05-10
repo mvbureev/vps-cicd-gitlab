@@ -2,6 +2,8 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
+RUN rm -rf ./.next
+
 RUN npm install --global pm2
 
 COPY ./package*.json ./
