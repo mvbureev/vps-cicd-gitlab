@@ -6,7 +6,7 @@ deploy:
   script:
     - chmod og= $ID_RSA
     - apk update && apk add openssh-client docker-compose
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f ./next-starter/docker-compose.yaml down -v"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f ./next-starter/docker-compose.yaml up -d --build"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f next-starter/docker-compose.yaml down -v"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose -f next-starter/docker-compose.yaml up -d --build"
   only:
     - master
