@@ -1,34 +1,42 @@
-services:
-  nextjs:
-    build:
-      dockerfile: Dockerfile
-      context: ./frontend
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-      - "3000:3000/udp"
-    networks:
-      - next-start
-  proxy:
-    image: jonasal/nginx-certbot:latest
-    restart: unless-stopped
-    environment:
-      CERTBOT_EMAIL: "mvbureev@gmail.com"
-      DEBUG: 1
-      RENEWAL_INTERVAL: "8d"
-    ports:
-      - "80:80/tcp"
-      - "443:443/tcp"
-    networks:
-      - next-start
-    volumes:
-      - ./nginx/user_conf.d:/etc/nginx/user_conf.d:ro
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - nginx_secrets:/etc/letsencrypt
+stages:
+  - publish
+  - deploy
 
-networks:
-  next-start:
-    driver: bridge
+variables:
+  TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
+  TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
 
-volumes:
-  nginx_secrets:
+publish:
+  image: docker:latest
+  stage: publish
+  services:
+    - docker:dind
+  script:
+    - docker build -t $TAG_COMMIT -t $TAG_LATEST .
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push $TAG_COMMIT
+    - docker push $TAG_LATEST
+
+
+deploy:
+  image: docker:latest
+  stage: deploy
+  services:
+    - docker:dind    
+  script:
+    - apk add --no-cache docker-compose
+    - docker-compose up -d --build
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $TAG_COMMIT"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker-compose up"
+    # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f my-app || true"
+    # - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 80:80 --name my-app $TAG_COMMIT"
+  environment:
+    name: production
+    url: http://mvbureev.ru
+  only:
+    - master
+
+
