@@ -8,12 +8,8 @@ stages:
 deploy:
   stage: deploy
   script:
-    - apk add --no-cache docker-compose
-    # - docker-compose -f docker-compose.yaml stop
-    # - docker-compose -f docker-compose.yaml down --rmi all --volumes
-    - docker-compose -f docker-compose.yaml down
-    - docker-compose -f docker-compose.yaml build --no-cache
-    - docker-compose -f docker-compose.yaml up
-    # - docker-compose -f docker-compose.yaml up -d
+    - apk add docker-compose
+    - docker-compose -f docker-compose.yaml down --rmi all --volumes
+    - docker-compose -f docker-compose.yaml up --build
   only:
     - master
