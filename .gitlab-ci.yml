@@ -1,6 +1,15 @@
-image: docker:latest
+image: docker:20-dind
 services:
-  - docker:dind
+- name: docker:20-dind
+  alias: docker
+  command: ["--tls=false"]
+
+variables:
+  DOCKER_DRIVER: overlay
+  DOCKER_HOST: tcp://docker:2375 
+  DOCKER_TLS_CERTDIR: ""
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  FF_GITLAB_REGISTRY_HELPER_IMAGE: 1
 
 stages:
   - deploy
