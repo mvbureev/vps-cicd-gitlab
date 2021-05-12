@@ -1,6 +1,6 @@
-image: docker:18.09.7-dind
+image: docker:19-dind
 services:
-  - docker:18.09.7-dind
+  - docker:19-dind
 
 stages:
   - deploy
