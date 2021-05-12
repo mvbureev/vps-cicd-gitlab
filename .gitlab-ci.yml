@@ -4,13 +4,17 @@ image:
 services:
   - docker:dind
 
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_DRIVER: overlay2
+
 stages:
   - deploy
 
 deploy:
   stage: deploy
   script:
-    - docker-compose -f docker-compose.yaml down
-    - docker-compose -f docker-compose.yaml up --build
+    - docker-compose -f down
+    - docker-compose -f up --build
   only:
     - master
