@@ -9,7 +9,7 @@ deploy:
   stage: deploy
   script:
     - apk add docker-compose
-    - docker-compose -f docker-compose.yaml down --rmi all --volumes
+    - docker-compose -f docker-compose.yaml down
     - docker-compose -f docker-compose.yaml up --build
   only:
     - master
