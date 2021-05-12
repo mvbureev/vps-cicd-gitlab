@@ -14,7 +14,7 @@ stages:
 deploy:
   stage: deploy
   script:
-    - docker-compose -f down
-    - docker-compose -f up --build
+    - docker-compose down
+    - docker-compose up --build
   only:
     - master
