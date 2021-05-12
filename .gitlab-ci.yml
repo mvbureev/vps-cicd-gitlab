@@ -1,6 +1,8 @@
-image: docker:19-dind
+image:
+  name: docker/compose:latest
+
 services:
-  - docker:19-dind
+  - docker:dind
 
 stages:
   - deploy
@@ -8,7 +10,6 @@ stages:
 deploy:
   stage: deploy
   script:
-    - apk add docker-compose
     - docker-compose -f docker-compose.yaml down
     - docker-compose -f docker-compose.yaml up --build
   only:
