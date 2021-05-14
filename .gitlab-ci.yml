@@ -1,5 +1,6 @@
 image:
-  name: docker/compose:latest
+  name: docker:latest
+  # name: docker/compose:latest
 
 # services:
 #   - docker:dind
@@ -10,7 +11,8 @@ stages:
 build_and_deploy:
   stage: build_and_deploy
   script:
-    - docker-compose down
-    - docker-compose up --build
+    - docker -v
+    # - docker-compose down
+    # - docker-compose up --build
   only:
     - master
