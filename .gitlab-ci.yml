@@ -9,10 +9,10 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
-  - deploy
+  - build_and_deploy
 
-deploy:
-  stage: deploy
+build_and_deploy:
+  stage: build_and_deploy
   script:
     - docker-compose down
     - docker-compose up --build
