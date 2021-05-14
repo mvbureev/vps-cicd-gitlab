@@ -2,8 +2,8 @@ image:
   name: docker/compose:latest
 
 services:
-  - docker:19.03.12-dind
-  alias: thedockerhost
+  - name: docker:19.03.12-dind
+    alias: thedockerhost
 
 variables:
    DOCKER_HOST: tcp://thedockerhost:2375/
