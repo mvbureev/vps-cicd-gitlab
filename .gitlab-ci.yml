@@ -2,8 +2,8 @@ image:
   name: docker:latest
   # name: docker/compose:latest
 
-# services:
-#   - docker:dind
+services:
+  - docker:dind
 
 stages:
   - build_and_deploy
@@ -11,8 +11,8 @@ stages:
 build_and_deploy:
   stage: build_and_deploy
   script:
-    - docker -v
-    # - docker-compose down
-    # - docker-compose up --build
+    - apk add --no-cache docker-compose
+    - docker-compose down
+    - docker-compose up --build
   only:
     - master
