@@ -5,29 +5,29 @@ networks:
     driver: bridge
 
 services:
+  proxy:
+    image: staticfloat/nginx-certbot
+    restart: always
+    environment:
+      CERTBOT_EMAIL: "mvbureev@gmail.com"
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - starter
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/user.conf.d
+      - ./certbot_extra_domains:/etc/nginx/certbot/extra_domains
+
   nextjs:
     build:
       dockerfile: Dockerfile
       context: ./frontend
     restart: unless-stopped
-    # depends_on:
-    #   - proxy
+    depends_on:
+      - proxy
     ports:
       - 3000:3000
     networks:
       - starter
-
-  # proxy:
-  #   image: staticfloat/nginx-certbot
-  #   restart: always
-  #   environment:
-  #     CERTBOT_EMAIL: "mvbureev@gmail.com"
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   networks:
-  #     - starter
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-  #     - ./nginx/conf.d:/etc/nginx/user.conf.d
-  #     - ./certbot_extra_domains:/etc/nginx/certbot/extra_domains
