@@ -27,7 +27,7 @@ docker-compose version
 # chmod 400 $DOCKER_CERT_PATH/key.pem
 
 # далее начинаем уже работать с удаленным docker-демоном. Собственно, сам деплой
-export DOCKER_TLS_VERIFY=1
+# export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://$DEPLOY_HOST:2376
 
 # проверим, что коннектится все успешно
