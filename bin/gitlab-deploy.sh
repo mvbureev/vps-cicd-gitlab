@@ -40,8 +40,8 @@ docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
-  pull app
+  pull
 # поднимаем приложение
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
-  up --build -d app
+  up --build
