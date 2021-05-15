@@ -2,8 +2,8 @@ image:
   name: docker:latest
   entrypoint: ["/bin/sh", "-c"]
 
-# services:
-#   - docker:dind
+services:
+  - docker:dind
 
 before_script:
   - apk add --no-cache docker-compose
