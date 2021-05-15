@@ -30,10 +30,6 @@ chmod 400 $DOCKER_CERT_PATH/key.pem
 export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://$DEPLOY_HOST:2376
 
-docker-compose \
-  -f $DOCKER_COMPOSE_FILE \
-  down
-
 # проверим, что коннектится все успешно
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
@@ -45,7 +41,16 @@ docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
   pull
+
+docker-compose \
+  -f $DOCKER_COMPOSE_FILE \
+  build
+
+docker-compose \
+  -f $DOCKER_COMPOSE_FILE \
+  down
+
 # поднимаем приложение
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
-  up --build
+  up
