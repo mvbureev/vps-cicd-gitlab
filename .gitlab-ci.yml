@@ -2,8 +2,8 @@ image:
   name: docker/compose:latest
   entrypoint: ["/bin/sh", "-c"]
 
-services:
-  - docker:dind
+# services:
+#   - docker:dind
 
 stages:
   - deploy
