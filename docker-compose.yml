@@ -10,8 +10,8 @@ services:
       dockerfile: Dockerfile
       context: ./frontend
     restart: unless-stopped
-    depends_on:
-      - proxy
+    # depends_on:
+    #   - proxy
     ports:
       - 3000:3000
     networks:
