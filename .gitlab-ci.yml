@@ -16,6 +16,6 @@ stages:
 deploy:
   stage: deploy
   script:
-    - bin/deploy.sh
+    - deploy.sh
   only:
     - master
