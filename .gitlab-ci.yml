@@ -16,6 +16,6 @@ stages:
 deploy:
   stage: deploy
   script:
-    - deploy.sh
+    - bin/gitlab-deploy.sh
   only:
     - master
