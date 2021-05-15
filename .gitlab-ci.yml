@@ -6,8 +6,8 @@ services:
   - docker:dind
 
 before_script:
-  - ls -lsa
   - apk add --no-cache docker-compose
+  - ls -lsa
 
 stages:
   - deploy
