@@ -1,5 +1,5 @@
 image:
-  name: docker/compose:latest
+  name: docker/compose:stable
   entrypoint: ["/bin/sh", "-c"]
 
 services:
@@ -11,6 +11,9 @@ stages:
 deploy:
   stage: deploy
   script:
+    - curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    - chmod +x /usr/local/bin/docker-compose
+    - ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
     - ls -lsa
     - sh ./bin/gitlab-deploy.sh
   only:
