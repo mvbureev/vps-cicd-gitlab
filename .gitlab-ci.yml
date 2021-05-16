@@ -2,17 +2,13 @@ image:
   name: docker:20.10
   entrypoint: ["/bin/sh", "-c"]
 
-services:
-  - name: docker:20.10-dind-rootless
-#     alias: dind
-
-# variables:
-#   DOCKER_HOST: tcp://dind:2375
+# services:
+#   - name: docker:20.10-dind-rootless
 
 before_script:
   - apk add --no-cache docker-compose
-  - docker-compose version
   - docker info
+  - docker-compose version
   - ls -lsa
 
 stages:
