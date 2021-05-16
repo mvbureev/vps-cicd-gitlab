@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # Падаем сразу, если возникли какие-то ошибки
-set -e
+# set -e
 # Выводим, то , что делаем
 set -v
 
@@ -26,7 +26,6 @@ chmod 400 $DOCKER_CERT_PATH/key.pem
 export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://$DEPLOY_HOST:2376
 
-ls -l /var/lib/docker
 ls -l /root/.docker
 
 # проверим, что коннектится все успешно
