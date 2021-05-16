@@ -1,8 +1,8 @@
 docker-build:
   stage: build
   variables:
-    NEXTJS_CHANGED: "$(git diff-tree --no-commit-id --name-only -r HEAD | grep 'frontend/'"
-    PROXY_CHANGED: "$(git diff-tree --no-commit-id --name-only -r HEAD | grep 'nginx/'"
+    NEXTJS_CHANGED: "$(git diff-tree --no-commit-id --name-only -r HEAD | grep 'frontend/')"
+    PROXY_CHANGED: "$(git diff-tree --no-commit-id --name-only -r HEAD | grep 'nginx/')"
   before_script:
     - ls -lsa
     - docker info
