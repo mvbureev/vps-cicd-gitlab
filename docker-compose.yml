@@ -11,7 +11,6 @@ services:
     restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
-      DEBUG: 1
     ports:
       - "80:80"
       - "443:443"
@@ -25,6 +24,8 @@ services:
       context: ./frontend
       cache_from:
         - nextjs
+        shm_size: '1500m'
+    shm_size: '1500m'
     restart: unless-stopped
     depends_on:
       - proxy

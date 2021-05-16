@@ -2,18 +2,20 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
-RUN npm install --global pm2
+ENV YARN_CACHE_FOLDER=/dev/shm/yarn_cache
+
+RUN yarn install --global pm2
 
 COPY ./package*.json ./
 
-RUN npm install --production
+RUN yarn install --production --frozen-lockfile
 
 COPY ./ ./
 
-RUN npm run build
+RUN yarn build
 
 EXPOSE 3000
 
 USER node
 
-CMD [ "pm2-runtime", "start", "npm", "--", "start" ]
+CMD [ "pm2-runtime", "start", "yarn", "--", "start" ]
