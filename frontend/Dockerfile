@@ -2,18 +2,18 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
-RUN yarn add global pm2
+RUN npm install --global pm2
 
 COPY ./package*.json ./
 
-RUN yarn --production
+RUN npm install --production
 
 COPY ./ ./
 
-RUN yarn build
+RUN npm run build
 
 EXPOSE 3000
 
 USER node
 
-CMD [ "pm2-runtime", "start", "yarn", "--", "start" ]
+CMD [ "pm2-runtime", "start", "npm", "--", "start" ]
