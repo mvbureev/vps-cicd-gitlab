@@ -12,7 +12,7 @@ services:
     networks:
       - starter
     volumes:
-      - ./nginx/nginx.conf.d:/etc/nginx
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/user.conf.d
       - ./certbot_extra_domains:/etc/nginx/certbot/extra_domains
       - nginx_secrets:/etc/letsencrypt
