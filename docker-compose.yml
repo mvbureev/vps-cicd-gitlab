@@ -12,13 +12,13 @@ services:
     networks:
       - starter
     volumes:
-      - type: bind
+      - type: volume
         source: ./nginx/nginx.conf
         target: /etc/nginx/nginx.conf
-      - type: bind
+      - type: volume
         source: ./nginx/user.conf.d
         target: /etc/nginx/user.conf.d
-      - type: bind
+      - type: volume
         source: ./nginx/certbot/extra_domains
         target: /etc/nginx/certbot/extra_domains
 
