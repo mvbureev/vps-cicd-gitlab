@@ -27,6 +27,8 @@ docker-compose \
   -f $DOCKER_COMPOSE_FILE \
   down
 
+cat ./nginx/nginx.conf
+
 # поднимаем приложение
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
