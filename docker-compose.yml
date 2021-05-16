@@ -1,12 +1,5 @@
 version: "3"
 
-networks:
-  starter:
-    driver: bridge
-
-volumes:
-  nginx_secrets:
-
 services:
   proxy:
     image: jonasal/nginx-certbot:latest
@@ -35,3 +28,10 @@ services:
       - "3000:3000"
     networks:
       - starter
+
+networks:
+  starter:
+    driver: bridge
+
+volumes:
+  nginx_secrets:
