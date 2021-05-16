@@ -8,7 +8,7 @@ RUN yarn add global install pm2
 
 COPY ./package*.json ./
 
-RUN yarn --production --frozen-lockfile
+RUN yarn --production
 
 COPY ./ ./
 
