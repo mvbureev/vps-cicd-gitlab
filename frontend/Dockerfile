@@ -4,11 +4,11 @@ WORKDIR /usr/app
 
 ENV YARN_CACHE_FOLDER=/dev/shm/yarn_cache
 
-RUN yarn install --global pm2
+RUN yarn add global install pm2
 
 COPY ./package*.json ./
 
-RUN yarn install --production --frozen-lockfile
+RUN yarn --production --frozen-lockfile
 
 COPY ./ ./
 
