@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   proxy:
+    image: nginx-proxy-cert:${DOCKER_COMPOSE_TAG}
     build:
-      image: nginx-proxy-cert:${DOCKER_COMPOSE_TAG}
       dockerfile: Dockerfile
       context: ./nginx
     # restart: always
@@ -19,8 +19,8 @@ services:
       - letsencrypt:/etc/letsencrypt
 
   nextjs:
+    image: nextjs:${DOCKER_COMPOSE_TAG}
     build:
-      image: nextjs:${DOCKER_COMPOSE_TAG}
       dockerfile: Dockerfile
       context: ./frontend
     # restart: unless-stopped
