@@ -3,8 +3,8 @@ image:
   entrypoint: ["/bin/sh", "-c"]
 
 services:
-  name: docker:20.10-dind-rootless
-  alias: dind
+  - name: docker:20.10-dind-rootless
+    alias: dind
 
 variables:
   DOCKER_HOST: tcp://dind:2375
