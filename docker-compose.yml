@@ -13,8 +13,6 @@ services:
       - starter
     volumes:
       - ./nginx/:/etc/nginx/
-      # - ./nginx/conf.d/:/etc/nginx/user.conf.d/
-      - ./certbot_extra_domains/:/etc/nginx/certbot/extra_domains/
 
   nextjs:
     build:
