@@ -11,8 +11,8 @@ variables:
 
 before_script:
   - apk add --no-cache docker-compose
-  - docker info
   - docker-compose version
+  - docker info
   - ls -lsa
 
 stages:
