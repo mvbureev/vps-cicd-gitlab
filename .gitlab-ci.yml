@@ -1,6 +1,6 @@
 image:
   name: docker:20.10
-  entrypoint: ["/bin/sh", "-c"]
+  entrypoint: ["/bin/bash", "-c"]
 
 # services:
 #   - name: docker:20.10-dind-rootless
