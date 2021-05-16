@@ -24,7 +24,7 @@ docker-build:
     # - git diff-tree --no-commit-id --name-only -r HEAD
     - docker-compose config
     - docker-compose pull
-    - docker-compose build
+    - docker-compose build --detach
     # - docker-compose push
-    - docker-compose up -d
+    - docker-compose up -d --detach
  

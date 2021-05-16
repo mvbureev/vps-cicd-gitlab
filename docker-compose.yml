@@ -2,12 +2,12 @@ version: "3.8"
 
 services:
   proxy:
-    image: "nginx-proxy-cert"
+    image: "proxy"
     build:
       dockerfile: Dockerfile
       context: ./nginx
       cache_from: 
-      - "nginx-proxy-cert"
+      - "proxy"
     restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
