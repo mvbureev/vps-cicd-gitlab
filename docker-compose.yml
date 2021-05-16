@@ -2,7 +2,7 @@ version: "3"
 
 services:
   proxy:
-    image: jonasal/nginx-certbot:latest
+    image: staticfloat/nginx-certbot
     restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
@@ -15,7 +15,6 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/user.conf.d
       - ./certbot_extra_domains:/etc/nginx/certbot/extra_domains
-      - nginx_secrets:/etc/letsencrypt
 
   nextjs:
     build:
@@ -32,6 +31,3 @@ services:
 networks:
   starter:
     driver: bridge
-
-volumes:
-  nginx_secrets:
