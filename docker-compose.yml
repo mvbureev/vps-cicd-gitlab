@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   proxy:
-    image: nginx-proxy-cert
+    image: "nginx-proxy-cert"
     build:
       dockerfile: Dockerfile
       context: ./nginx
@@ -17,7 +17,7 @@ services:
       - starter
 
   nextjs:
-    image: nextjs
+    image: "nextjs"
     build:
       dockerfile: Dockerfile
       context: ./frontend
