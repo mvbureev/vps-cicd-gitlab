@@ -1,30 +1,25 @@
 docker-build:
-  # image: docker:latest
   stage: build
-  # services:
-    # - docker:dind
   before_script:
     - ls -lsa
     - docker info
     - docker-compose version
     - docker-compose ps
-    # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  # Default branch leaves tag empty (= latest tag)
-  # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    # - |
-    #   if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-    #     tag=""
-    #     echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
-    #   else
-    #     tag=":$CI_COMMIT_REF_SLUG"
-    #     echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
-    #   fi
-    # - export DOCKER_COMPOSE_TAG=$tag
-    # - git diff-tree --no-commit-id --name-only -r HEAD
     - docker-compose config
-    - docker-compose pull
-    - docker-compose build --detach
-    # - docker-compose push
-    - docker-compose up -d --detach
+    - |
+      if [[ git diff-tree --no-commit-id --name-only -r HEAD | sed 's/frontend\/\/nextjs/' = nextjs ]]; then
+        - docker-compose pull nextjs
+        - docker-compose build nextjs
+        - docker-compose up -d nextjs
+      fi
+    - |
+      if [[ git diff-tree --no-commit-id --name-only -r HEAD | sed 's/frontend\/\/proxy/' = proxy ]]; then
+        - docker-compose pull proxy
+        - docker-compose build proxy
+        - docker-compose up -d proxy
+      fi
+    # - docker-compose pull
+    # - docker-compose build
+    # - docker-compose up -d
  
