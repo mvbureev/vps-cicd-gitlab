@@ -12,15 +12,8 @@ services:
     networks:
       - starter
     volumes:
-      - type: volume
-        source: ./nginx/nginx.conf
-        target: /etc/nginx/nginx.conf
-      - type: volume
-        source: ./nginx/user.conf.d
-        target: /etc/nginx/user.conf.d
-      - type: volume
-        source: ./nginx/certbot/extra_domains
-        target: /etc/nginx/certbot/extra_domains
+      - ./nginx/user.conf.d:/etc/nginx/user.conf.d:ro
+      - letsencrypt:/etc/letsencrypt
 
   nextjs:
     build:
@@ -37,3 +30,6 @@ services:
 networks:
   starter:
     driver: bridge
+
+volumes:
+  letsencrypt:
