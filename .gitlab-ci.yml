@@ -12,15 +12,15 @@ docker-build:
   # Default branch leaves tag empty (= latest tag)
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    - |
-      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
-        tag=""
-        echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
-      else
-        tag=":$CI_COMMIT_REF_SLUG"
-        echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
-      fi
-    - export DOCKER_COMPOSE_TAG=$tag
+    # - |
+    #   if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then
+    #     tag=""
+    #     echo "Running on default branch '$CI_DEFAULT_BRANCH': tag = 'latest'"
+    #   else
+    #     tag=":$CI_COMMIT_REF_SLUG"
+    #     echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
+    #   fi
+    # - export DOCKER_COMPOSE_TAG=$tag
     - docker-compose config
     - docker-compose build
     # - docker-compose push "$CI_REGISTRY_IMAGE${tag}"

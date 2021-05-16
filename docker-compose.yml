@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   proxy:
-    image: nginx-proxy-cert:${DOCKER_COMPOSE_TAG}
+    # image: nginx-proxy-cert:${DOCKER_COMPOSE_TAG}
     build:
       dockerfile: Dockerfile
       context: ./nginx
@@ -19,7 +19,7 @@ services:
       - letsencrypt:/etc/letsencrypt
 
   nextjs:
-    image: nextjs:${DOCKER_COMPOSE_TAG}
+    # image: nextjs:${DOCKER_COMPOSE_TAG}
     build:
       dockerfile: Dockerfile
       context: ./frontend
