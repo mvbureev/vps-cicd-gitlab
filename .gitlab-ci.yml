@@ -25,5 +25,5 @@ docker-build:
     - docker-compose build
     # - docker-compose push "$CI_REGISTRY_IMAGE${tag}"
     - docker-compose push
-    - docker-compose up
+    - docker-compose up -d
  

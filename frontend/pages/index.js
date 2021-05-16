@@ -5,13 +5,13 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>mvbureev</title>
+        <title>MVBUREEV</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          mvbureev
+          MVBUREEV
           <br />
           <br />
           vps + domain + docker + ci/cd
