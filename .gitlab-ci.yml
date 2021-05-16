@@ -4,10 +4,10 @@ image:
 
 services:
   - name: docker:20.10-dind-rootless
-    alias: dind
+#     alias: dind
 
-variables:
-  DOCKER_HOST: tcp://dind:2375
+# variables:
+#   DOCKER_HOST: tcp://dind:2375
 
 before_script:
   - apk add --no-cache docker-compose
