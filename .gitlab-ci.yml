@@ -13,7 +13,7 @@ deploy:
   stage: deploy
   script:
     - docker-compose ps
-    - docker login -u {$DOCKER_USER} -p {$DOCKER_PASSWORD}
+    - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
     - docker-compose pull
     - docker-compose up --build --force-recreate
   only:
