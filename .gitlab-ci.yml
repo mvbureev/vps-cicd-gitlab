@@ -21,3 +21,9 @@ docker-build:
         docker-compose down proxy
         docker-compose up -d proxy
       fi
+    - |
+      if [ $(git diff-tree --no-commit-id --name-only -r HEAD | grep 'docker-compose.yml\|.gitlab-ci.yml') ]; then
+        docker-compose pull
+        docker-compose build
+        docker-compose up -d
+      fi
