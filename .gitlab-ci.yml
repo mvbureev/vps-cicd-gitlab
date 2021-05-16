@@ -11,14 +11,12 @@ docker-build:
       if [ $(git diff-tree --no-commit-id --name-only -r HEAD | grep 'frontend/') ]; then
         docker-compose pull nextjs
         docker-compose build nextjs
-        docker-compose down nextjs
         docker-compose up -d nextjs
       fi
     - |
       if [ $(git diff-tree --no-commit-id --name-only -r HEAD | grep 'nginx/') ]; then
         docker-compose pull proxy
         docker-compose build proxy
-        docker-compose down proxy
         docker-compose up -d proxy
       fi
     - |
