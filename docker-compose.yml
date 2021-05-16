@@ -2,7 +2,10 @@ version: "3.8"
 
 services:
   proxy:
-    image: staticfloat/nginx-certbot
+    build:
+      image: nginx-proxy-cert:${DOCKER_COMPOSE_TAG}
+      dockerfile: Dockerfile
+      context: ./nginx
     # restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
@@ -13,11 +16,11 @@ services:
     networks:
       - starter
     volumes:
-      - ./nginx/user.conf.d:/etc/nginx/user.conf.d:ro
       - letsencrypt:/etc/letsencrypt
 
   nextjs:
     build:
+      image: nextjs:${DOCKER_COMPOSE_TAG}
       dockerfile: Dockerfile
       context: ./frontend
     # restart: unless-stopped
