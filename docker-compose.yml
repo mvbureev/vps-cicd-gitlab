@@ -12,7 +12,7 @@ services:
     networks:
       - starter
     volumes:
-      - ./nginx/:/etc/nginx/
+      - ./nginx:/etc/nginx:rw
 
   nextjs:
     build:
