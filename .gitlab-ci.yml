@@ -10,8 +10,8 @@ docker-build:
     - docker-compose ps
   script:
     - docker-compose config
-    - echo NEXTJS_CHANGED
-    - echo PROXY_CHANGED
+    - echo $NEXTJS_CHANGED
+    - echo $PROXY_CHANGED
     - |
       if [[ -z "$NEXTJS_CHANGED" ]]; then
         - docker-compose pull nextjs
