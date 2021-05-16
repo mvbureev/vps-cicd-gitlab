@@ -6,8 +6,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./nginx
-      cache_from:
-        - nginx-proxy-cert
+      cache_from: nginx-proxy-cert
     restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
@@ -22,9 +21,8 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./frontend
-      cache_from:
-        - nextjs
-        shm_size: '1500m'
+      cache_from: nextjs
+      shm_size: '1500m'
     shm_size: '1500m'
     restart: unless-stopped
     depends_on:
