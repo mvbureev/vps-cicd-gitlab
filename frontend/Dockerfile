@@ -2,7 +2,7 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
-RUN yarn add global install pm2
+RUN yarn add global pm2
 
 COPY ./package*.json ./
 
