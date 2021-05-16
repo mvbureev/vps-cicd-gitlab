@@ -1,9 +1,9 @@
 image:
-  name: docker:20.10
+  name: docker:19.03
   entrypoint: ["/bin/sh", "-c"]
 
 # services:
-#   - name: docker:20.10-dind-rootless
+#   - name: docker:19.03-dind-rootless
 
 before_script:
   - apk add --no-cache docker-compose
