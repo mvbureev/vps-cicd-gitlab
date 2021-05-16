@@ -2,11 +2,13 @@ version: "3.8"
 
 services:
   proxy:
-    # image: nginx-proxy-cert:${DOCKER_COMPOSE_TAG}
+    image: nginx-proxy-cert
     build:
       dockerfile: Dockerfile
       context: ./nginx
-    # restart: always
+      cache_from:
+        - nginx-proxy-cert
+    restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
       DEBUG: 1
@@ -17,11 +19,13 @@ services:
       - starter
 
   nextjs:
-    # image: nextjs:${DOCKER_COMPOSE_TAG}
+    image: nextjs
     build:
       dockerfile: Dockerfile
       context: ./frontend
-    # restart: unless-stopped
+      cache_from:
+        - nextjs
+    restart: unless-stopped
     depends_on:
       - proxy
     ports:

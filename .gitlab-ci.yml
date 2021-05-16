@@ -1,8 +1,8 @@
 docker-build:
-  image: docker:latest
+  # image: docker:latest
   stage: build
-  services:
-    - docker:dind
+  # services:
+    # - docker:dind
   before_script:
     - docker info
     - docker-compose version
@@ -22,8 +22,8 @@ docker-build:
     #   fi
     # - export DOCKER_COMPOSE_TAG=$tag
     - docker-compose config
+    - docker-compose pull
     - docker-compose build
-    # - docker-compose push "$CI_REGISTRY_IMAGE${tag}"
-    # - docker-compose push
+    - docker-compose push
     - docker-compose up -d
  
