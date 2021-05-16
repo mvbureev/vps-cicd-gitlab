@@ -15,8 +15,6 @@ services:
       - "443:443"
     networks:
       - starter
-    volumes:
-      - letsencrypt:/etc/letsencrypt
 
   nextjs:
     # image: nextjs:${DOCKER_COMPOSE_TAG}
@@ -34,6 +32,3 @@ services:
 networks:
   starter:
     driver: bridge
-
-volumes:
-  letsencrypt:
