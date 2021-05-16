@@ -12,7 +12,15 @@ services:
     networks:
       - starter
     volumes:
-      - ./nginx:/etc/nginx:rw
+      - type: volume
+        source: nginx
+        target: /etc/nginx/nginx.conf
+      - type: volume
+        source: conf
+        target: /etc/nginx/user.conf.d
+      - type: volume
+        source: domains
+        target: /etc/nginx/certbot/extra_domains
 
   nextjs:
     build:
@@ -29,3 +37,8 @@ services:
 networks:
   starter:
     driver: bridge
+
+volumes:
+  nginx: ./nginx/nginx.conf
+  conf: ./nginx/conf.d
+  domains: ./nginx/certbot/extra_domains
