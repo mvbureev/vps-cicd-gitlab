@@ -1,5 +1,8 @@
 docker-build:
   stage: build
+  variables:
+    NEXTJS_CHANGED: git diff-tree --no-commit-id --name-only -r HEAD | grep "frontend/"
+    PROXY_CHANGED: git diff-tree --no-commit-id --name-only -r HEAD | grep "nginx/"
   before_script:
     - ls -lsa
     - docker info
@@ -8,18 +11,14 @@ docker-build:
   script:
     - docker-compose config
     - |
-      if [[ git diff-tree --no-commit-id --name-only -r HEAD | sed 's/frontend\/\/nextjs/' = nextjs ]]; then
+      if [[ -z "$NEXTJS_CHANGED" ]]; then
         - docker-compose pull nextjs
         - docker-compose build nextjs
         - docker-compose up -d nextjs
       fi
     - |
-      if [[ git diff-tree --no-commit-id --name-only -r HEAD | sed 's/frontend\/\/proxy/' = proxy ]]; then
+      if [[ -z "$PROXY_CHANGED" ]]; then
         - docker-compose pull proxy
         - docker-compose build proxy
         - docker-compose up -d proxy
       fi
-    # - docker-compose pull
-    # - docker-compose build
-    # - docker-compose up -d
- 
