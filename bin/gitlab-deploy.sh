@@ -21,13 +21,4 @@ docker-compose \
 
 docker-compose \
   -f $DOCKER_COMPOSE_FILE \
-  build
-
-docker-compose \
-  -f $DOCKER_COMPOSE_FILE \
-  down
-
-# поднимаем приложение
-docker-compose \
-  -f $DOCKER_COMPOSE_FILE \
-  up
+  up --build --force-recreate

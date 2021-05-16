@@ -3,7 +3,7 @@ version: "3.8"
 services:
   proxy:
     image: staticfloat/nginx-certbot
-    restart: always
+    # restart: always
     environment:
       CERTBOT_EMAIL: "mvbureev@gmail.com"
     ports:
@@ -19,7 +19,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: ./frontend
-    restart: unless-stopped
+    # restart: unless-stopped
     depends_on:
       - proxy
     ports:
